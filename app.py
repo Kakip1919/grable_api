@@ -1,4 +1,5 @@
 from flask import Flask, request, jsonify
+import boss
 from selenium import webdriver
 from time import sleep
 from selenium.webdriver.chrome.options import Options
@@ -9,14 +10,8 @@ options = Options()
 options.add_argument('--headless')
 driver = webdriver.Chrome(r'C:\Users\hidet\PycharmProjects\grable_api\chromedriver.exe', options=options)
 driver.get('https://gbs.eriri.net/')
-driver.execute_script("document.querySelector('#center > div:nth-child(1) > div.head > a').click()")
-driver.execute_script(
-    "document.querySelector('#center > div:nth-child(1) > div.modal-wrap > div > div > div > section:nth-child(2) > div > ul.tag-list > li:nth-child(2) > label').click()")
-driver.execute_script(
-    "document.querySelector('#center > div:nth-child(1) > div.modal-wrap > div > div > div > section:nth-child(2) > div > ul.enemy-list > li:nth-child(4) > a > span.data').click()")
-driver.execute_script(
-    "document.querySelector('#center > div:nth-child(1) > div.modal-wrap > div > footer > a.right.btn-1').click()")
-sleep(2)
+
+boss.avater(driver)
 
 
 @app.route('/', methods=["GET"])
